@@ -1,0 +1,1366 @@
+#PRACTICAL NO 1
+def removeduplicate(d):
+    lst=[]
+    for i in d:
+        if i not in lst:
+            lst.append(d)
+    return lst
+def intersection(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val in lst2:
+            lst3.append(val)
+    return lst3
+def union(lst1,lst2):
+    lst3=lst1.copy()
+    for val in lst2:
+        if val not in lst3:
+            lst3.append(val)
+    return lst3
+def diff(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val not in lst2:
+            lst3.append(val)
+    return lst3
+def sym_diff(lst1,lst2):
+    lst3=[]
+    d1=diff(lst1,lst2)
+    print("\nCricket - badmintan diff:-",d1)
+    d2=diff(lst2,lst1)
+    print("\nbadminton - cricket diff:-",d2)
+    lst3=union(d1,d2)
+    return lst3
+#BOTH C & B:-
+def cb(lst1,lst2):
+    lst3=intersection(lst1,lst2)
+    print("\nlist of who play both cricket and badminton:-",lst3)
+    return len(lst3)
+def eceb(lst1,lst2):
+    lst3=sym_diff(lst1,lst2)
+    print("\nwho play either cricket or badminton:-",lst3)
+    return len(lst3)
+def cfnb(lst1,lst2,lst3):
+    lst4= diff(intersection(lst1,lst2),lst3)
+    print("\nlist who play cricket football but not badminton:-",lst4)
+    return len(lst4)
+def ncnb(lst1,lst2,lst3):
+    lst4=diff(union(lst1,lst2),lst3)
+    print("\nNeighter cricket nor badminton:-",lst4)
+    return len(lst4)
+#main
+Secomp=[]
+n = int(input("\nEnter the no of student playing:-"))
+print("\nEnter the names", n ,"who playing:-")
+for i in range(0,n):
+    ele=input()
+    Secomp.append(ele)
+print("Original List Is:-"+str(Secomp))
+
+#cricket:-
+cricket=[]
+n=int(input("\nEnter no of student who playing a cricket"))
+print("\nEnter the student name:-")
+for i in range(0,n):
+    ele=input()
+    cricket.append(ele)
+print("The cricket original list:-"+str(cricket))
+cricket=removeduplicate(cricket)
+print("The cricket after duplicating list:-"+str(cricket))
+
+#badminton:-
+badminton=[]
+n=int(input("\n Enter the student for badminton:-"))
+print("\n ENter the name of badmintanors:-")
+for i in range(0,n):
+    ele=input()
+    badminton.append(ele)
+print("The cricket original list:-"+str(badminton))
+badminton=removeduplicate(badminton)
+print("The cricket after duplicating list:-"+str(badminton))
+
+#football:-
+football=[]
+n=int(input("\n Enter the student for football:-"))
+print("\n ENter the name of footballors:-")
+for i in range(0,n):
+    ele=input()
+    football.append(ele)
+print("The cricket original list:-"+str(football))
+football=removeduplicate(football)
+print("The cricket after duplicating list:-"+str(football))
+print("1)list of c&b \n2)Either c Or b \n3)neighter c nor b \n4)play c&f not b \n 5)Exit\n")
+while True:
+    choice=int(input("\nEnter your choice"))
+    if choice==1:
+        print("\nlist is:-",cb(cricket,badminton))
+    elif choice==2:
+        print("\nList is:-",eceb(cricket,badminton))
+    elif choice==3:
+        print("\nList is:-",ncnb(Secomp,cricket,badminton))
+    elif choice==4:
+        print("\nList is:-",cfnb(cricket,football,badminton))
+    elif choice==5:
+        print("\nThank You using this code...!")
+    else:
+        print("\nInvalid Choice:-")
+
+#PRACTICAL 2:-
+#PROGRAM:-
+def avgmarks(listofstu,noofstu):
+    sum=0
+    for i in range(noofstu):
+        sum+=listofstu[i]
+    return (sum/noofstu)
+def maximum(listofstu,noofstu):
+    max=0
+    for i in range(noofstu):
+        if max<listofstu[i]:
+            max=listofstu[i]
+    return max
+def minimum(listofstu,noofstu):
+    min=0
+    min=listofstu[0]
+    for i in range(noofstu):
+        if min>listofstu[i]:
+            min=listofstu[i]
+    return min
+def absent(listofstu,noofstu):
+    count=0
+    for i in range(noofstu):
+        if listofstu[i]==0:
+            count+=1
+    return count
+def largestfreq(listofstu,noofstu):
+    num = 0
+    cheak=maximum(listofstu,noofstu)
+    for i in range(noofstu):
+        if cheak==listofstu[i]:
+            num+=1
+    return num
+listofstu=[]
+noofstu=int(input("\nEnter No of Student"))
+a=1
+for i in range(noofstu):
+    marks=int(input("\nEnter Student Marks:-"))
+    listofstu.append(marks)
+    a+=1
+print("1)Avrage marks:-\n2)Maximum marks:-\n3)minimum freaquency:-\n4)Absent Student:-\n5)Largest Freaquency:-\nExit\n")
+while True:
+    ch=int(input("\nEnter Your Choice:-"))
+    if ch==1:
+        print("\nAvrage Marks:-",avgmarks(listofstu,noofstu))
+    elif ch==2:
+        print("\nMaximum Marks:-",maximum(listofstu,noofstu))
+    elif ch==3:
+        print("\nMinimum Marks:-",minimum(listofstu,noofstu))
+    elif ch==4:
+        print("\nAbsent Student:-",absent(listofstu,noofstu))
+    elif ch==5:
+        print("\nLargest Frequency:-",largestfreq(listofstu,noofstu))
+    elif ch==6:
+        print("\nThank You Using A code:-")
+        break
+    else:
+        print("\nInvalid Choice Try Again:-")
+
+#PRACTICAL NO 3:
+#PROGRAMS:-
+class bank_account:
+    def __init__(self):
+        self.balance=0
+        print("\nWelcome to our Bank:-")
+    def deposite(self):
+        amount=float(input("\nEnter the amount for depositing:-\n"))
+        if amount > 0:
+            self.balance+=amount
+            print("\nAmount has been successfully deposited:-\n" ,amount)
+        else:
+            print("\nPlease Enter a positive amount..!")
+    def widraw(self):
+        amount =float(input("\nEnter the amount:-\n"))
+        if amount>0:
+            if amount<=self.balance:
+                self.balance -= amount
+                print("\nAmount has been withdraw successfully:-\n",amount)
+            else:
+                print("\nSorry\nInvalid bank balance")
+        else:
+            print("Invalid balance please enter positive value or valid value...!")
+    def display(self):
+        print("\nNet Balance:-\n",self.balance)
+a=bank_account()
+print("1)Deposite:- \n2)Withdraw:- \n3)Display remmainning Balance:- \n4)Exit\n")
+while True:
+    ch=int(input("\nEnter Your Choice:-"))
+    if ch==1:
+        a.deposite()
+    if ch==2:
+        a.widraw()
+    if ch==3:
+        a.display()
+    if ch==4:
+        print("Thank You Using This Code...!")
+        break
+
+#PRACTICAL 4(1)[BINARY SEARCH]:
+#PROGRAM:
+def binary_search_recursive(phonebook, name, left, right):
+    if left > right:
+        return None
+    mid = (left + right) // 2
+    if phonebook[mid][0] == name:
+        return phonebook[mid]
+    elif phonebook[mid][0] < name:
+        return binary_search_recursive(phonebook, name, mid + 1, right)
+    else:
+        return binary_search_recursive(phonebook, name, left, mid - 1)
+def binary_search_nonrecursive(phonebook, name):
+    left, right = 0, len(phonebook) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if phonebook[mid][0] == name:
+            return phonebook[mid]
+        elif phonebook[mid][0] < name:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return None
+def insert_friend(phonebook, name, number):
+    for i, entry in enumerate(phonebook):
+        if entry[0] == name:
+            print(f"{name} is already in the phonebook.")
+            return
+        elif entry[0] > name:
+            phonebook.insert(i, (name, number))
+            print(f"{name} has been added to the phonebook.")
+            return
+    phonebook.append((name, number))
+    print(f"{name} has been added to the phonebook.")
+phonebook = []
+while True:
+    print("Phonebook Options:")
+    print("1. Insert a friend")
+    print("2. Search for a friend (binary search - recursive)")
+    print("3. Search for a friend (binary search - non-recursive)")
+    print("4. Exit")
+    choice = int(input("Enter your choice: "))
+    if choice == 2:
+        name = input("Enter the name to search: ")
+        result = binary_search_recursive(phonebook, name, 0, len(phonebook) - 1)
+        if result:
+            print(f"Name: {result[0]}, Number: {result[1]}")
+        else:
+            print(f"{name} not found in the phonebook.")
+    elif choice == 3:
+        name = input("Enter the name to search: ")
+        result = binary_search_nonrecursive(phonebook, name)
+        if result:
+            print(f"Name: {result[0]}, Number: {result[1]}")
+        else:
+            print(f"{name} not found in the phonebook.")
+    elif choice == 1:
+        name = input("Enter the name to insert: ")
+        number = input("Enter the number: ")
+        insert_friend(phonebook, name, number)
+    elif choice == 4:
+        print("Thank you using this code:-")
+        break
+    else:
+        print("Invalid choice. Please enter a valid option.")
+
+#PRACTICAL 4(2)[FIBB SEARCH]:
+#PROGRAM:
+def fibonacci_search(phonebook, name):
+    fib_m_minus_2 = 0
+    fib_m_minus_1 = 1
+    fib_m = fib_m_minus_1 + fib_m_minus_2
+    while fib_m < len(phonebook):
+        fib_m_minus_2 = fib_m_minus_1
+        fib_m_minus_1 = fib_m
+        fib_m = fib_m_minus_1 + fib_m_minus_2
+    offset = -1
+    while fib_m > 1:
+        i = min(offset + fib_m_minus_2, len(phonebook) - 1)
+        if phonebook[i][0] < name:
+            fib_m, fib_m_minus_1, fib_m_minus_2 = fib_m_minus_1, fib_m_minus_2, fib_m_minus_1
+            offset = i
+        elif phonebook[i][0] > name:
+            fib_m, fib_m_minus_1, fib_m_minus_2 = fib_m_minus_2, fib_m_minus_1 - fib_m_minus_2, fib_m_minus_2 - fib_m_minus_1
+        else:
+            return phonebook[i]
+    if (fib_m_minus_1 and phonebook[offset + 1][0] == name):
+        return phonebook[offset + 1]
+    return None
+def insert_friend(phonebook, name, number):
+    for i, entry in enumerate(phonebook):
+        if entry[0] == name:
+            print(f"{name} is already in the phonebook.")
+            return
+        elif entry[0] > name:
+            phonebook.insert(i, (name, number))
+            print(f"{name} has been added to the phonebook.")
+            return
+    phonebook.append((name, number))
+    print(f"{name} has been added to the phonebook.")
+phonebook = []
+while True:
+    print("Made by Soham Patil, 61 , SE-B AI&DS")
+    print("Phonebook Options:")
+    print("1. Search for a friend (Fibonacci search)")
+    print("2. Insert a friend")
+    print("3. Exit")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        name = input("Enter the name to search: ")
+        result = fibonacci_search(phonebook, name)
+        if result:
+            print(f"Name: {result[0]}, Number: {result[1]}")
+        else:
+            print(f"{name} not found in the phonebook.")
+    elif choice == 2:
+        name = input("Enter the name to insert: ")
+        number = input("Enter the number: ")
+        insert_friend(phonebook, name, number)
+    elif choice == 3:
+        break
+    else:
+        print("Invalid choice. Please enter a valid option.")
+
+#PRACTICAL 5:
+#PROGRAM:
+def selection_sort(arr):
+    n=len(arr)
+    for i in range(n):
+        min=i
+        for j in range(i+1,n):
+            if arr[j]<arr[i]:
+                min=j
+            arr[j],arr[i]=arr[i],arr[j]
+def bubble_sort(arr):
+    n=len(arr)
+    for i in range(n):
+        swap=False
+        for j in range(0,n-i-1):
+            if arr[j]>arr[j+1]:
+                arr[j],arr[j+1]=arr[j+1],arr[j]
+                swap=True
+            if not swap:
+                break
+def top_score(arr,top_n):
+    if top_n>len(arr):
+        top_n=len(arr)
+    print("Top Score is ",top_n)
+    print("\n")
+    for i in range (top_n):
+        print(f"{i+1} . {arr[i]}")
+n=int(input("Enter the no of student:-"))
+perc=[]
+for i in range (n):
+    marks=int(input("Enter the marks"))
+    perc.append(marks)
+print("1)Selection Sort:- \n2)Bubble Sort:- \n3)Exit")
+while True:
+    ch=int(input("Entre the choice:-"))
+    if ch==1:
+        print("----------------------")
+        print("The selection sort is ")
+        selection_sort(perc.copy())
+        top_score(perc,5)
+    if ch==2:
+        print("------------------------")
+        print("Bubble sort:-")
+        bubble_sort(perc.copy())
+        top_score(perc,5)
+    if ch==3:
+        print("Thank you using this code")
+        break
+    if ch!=1 and ch!=2 and ch!=3:
+        print("Invalid choice ")
+
+#PRACTICAL 6:
+PROGRAM:
+def get_input():
+    perc=[]
+    noofstu=int(input("Enter the no of student:-"))
+    for i in range (noofstu):
+        marks=float(input("Enter the marks:-"))
+        perc.append(marks)
+    return perc
+def display_perc(perc):
+    for i in range(len(perc)):
+        print(perc[i],sep="\n")
+def percentage_part(perc,start,end):
+    pivot=perc[start]
+    lower_bound=start+1
+    upper_bound=end
+    while True:
+        while lower_bound<=upper_bound and perc[lower_bound]<=pivot:
+            lower_bound+=1
+        while lower_bound<=upper_bound and perc[upper_bound]>=pivot:
+            upper_bound_=1
+        if lower_bound<=upper_bound_:
+            lower_bound,upper_bound_=upper_bound,lower_bound
+        else:
+            break
+    perc[start],perc[upper_bound]=perc[upper_bound],perc[start]
+    return upper_bound
+def quick_sort(perc,start,end):
+    while start<end:
+        part=percentage_part(perc,start,end)
+        quick_sort(perc,start,part-1)
+        quick_sort(perc,part+1,end)
+        return perc
+def displayfive(perc):
+    print("Top 5 student:-")
+    if len(perc)<5:
+        start,stop=len(perc)-1,-1
+    else:
+        start,stop=len(perc)-2,len(perc)-6
+    for i in range(start,stop,-1):
+        print(perc[i],sep="\n")
+unsort=[]
+sort=[]
+print("1)Insert:- \n2)Display \n3)perform \n4)Exit")
+while True:
+    ch = int(input("Enter choice:-"))
+    if ch==1:
+        unsort=get_input()
+    if ch==2:
+        display_perc(unsort)
+    if ch==3:
+        sort=quick_sort(unsort,0,len(unsort)-1)
+        print("The top 5 student is:-")
+        displayfive(sort)
+    if ch==4:
+        print("thank you using this code.")
+        break
+
+//PRACTICAL 7:
+//PROGRAM:
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+struct node{
+    string name;
+    int roll;
+    long prn;
+};
+class info{
+public:
+    node *s=NULL,*head1=NULL,*head2=NULL,*temp1=NULL,*head=NULL,*temp=NULL,*temp2=NULL;
+    int b,c,g,t,i;
+    string name;
+    int roll;
+    long prn;
+    int user;
+    void putdata_member(){
+        cout<<"Enter the member Information:-"<<endl;
+        cout<<"name:-";
+        cin>>name;
+        cout<<"Enter roll number Number:-";
+        cin>>roll;
+        cout<<"Enter PRN number:-";
+        cin>>prn;
+    }
+    void display_m(){
+        putdata_member();
+        cout<<"The information is:-\n";
+        cout<<"name:"<<name<<"\troll_no:"<<roll<<"\tPRN number:"<<prn<<endl;
+    }
+
+};
+class a{
+public:
+    string name;
+    int roll;
+    long prn;
+    int user;
+    p=putdata_secratory();
+    void putdata_secratory(){
+        cout<<"Enter the Secratory Information:-"<<endl;
+        cout<<"name:-";
+        cin>>name;
+        cout<<"Enter roll number Number:-";
+        cin>>roll;
+        cout<<"Enter PRN number:-";
+        cin>>prn;
+    }
+    void del(){
+        cout<<"Information deleted:-";
+        delete[] p;
+
+    }
+    void display_s(){
+        cout<<"The information is:-\n";
+        cout<<"name:"<<name<<"\troll_no:"<<roll<<"\tPRN number:"<<prn<<endl;
+    }
+
+};
+int main(){
+    info i;
+    a z;
+    int ch ;
+    cout<<"1)get member:-\n2)get_secratory:-\n3)display member:-\n4)display secratory:-\n5)exit\n";
+    do{
+        cout<<"Enter the choice:-";
+        cin>>ch;
+        switch (ch) {
+            case 1:
+                i.putdata_member();
+                break;
+            case 2:
+                z.putdata_secratory();
+                break;
+            case 3:
+                i.display_m();
+                break;
+            case 4:
+                z.display_s();
+                break;
+            case 5:
+                break;
+        }
+    }while(ch!=6);
+    return 0;
+
+}
+
+//PRACTICAL 8:
+//PROGRAM:
+
+#include<iostream>
+using namespace std;
+struct SLLNode* createSLL(int cnt, struct SLLNode *head);
+void displaySLL(struct SLLNode *head);
+void A_U_B();
+void A_int_B();
+void A_Min_B();
+void B_Min_A();
+void U_Min_A_U_B();
+struct SLLNode
+{
+   char data;
+   struct SLLNode *next;
+   
+}*headU, *headA, *headB;
+int main()
+{
+   int i,no;
+   cout<<"\n\n\t How many Linked Lists: ";
+   cin>>no;
+   headU = headA = headB = NULL;
+   for(i=1; i<=no; i++)
+   {
+      if(i == 1)
+      {
+         cout<<"\n\n\t Enter 10 Students of SE Comp : ";
+         headU = createSLL(10, headU);
+            cout<<"\n";
+         displaySLL(headU);
+      }
+      if(i == 2)
+      {
+         cout<<"\n\n\t Enter 5 Students who like Vanilla Icecreme: ";            
+         headA = createSLL(5, headA);
+            cout<<"\n";
+         displaySLL(headA);
+      }
+      if(i == 3)
+      {
+         cout<<"\n\n\t Enter 5 Students who like Butterscotch Icecreme: ";                  
+         headB = createSLL(5, headB); 
+            cout<<"\n";
+         displaySLL(headB);             
+      }
+   }
+	cout<<"\n\n Input Sets:------------------------";
+	
+	cout<<"\n\n Set 'U': ";
+	displaySLL(headU);
+	
+	cout<<"\n\n Set 'A': ";
+	displaySLL(headA);	
+	
+	cout<<"\n\n Set 'B': ";
+	displaySLL(headB);	
+	
+	cout<<"\n\n Output Sets:------------------------";	
+	A_U_B();
+	A_int_B();
+	A_Min_B();
+	B_Min_A();
+	U_Min_A_U_B();    
+   cout<<"\n\n";   
+   return 0;
+}
+//.........................................................Function to create Linked List as Sets.
+struct SLLNode* createSLL(int cnt, struct SLLNode *head)
+{
+   int i;
+   struct SLLNode *p, *newNode;
+   
+   for(i=0; i<cnt; i++)
+   {
+       newNode = new(struct SLLNode);  		//  1. DMA
+       cout<<"\n\t Enter Student Initial: ";	//  2. Data & Address Assignment
+       cin>>newNode->data;
+       newNode->next = NULL;
+       if(head == NULL)				//  3. Add node in the list 
+       {
+          head = newNode;
+             p = head;
+       }
+       else
+       {
+          p->next = newNode;
+                p = p->next;
+       }
+   }
+   return head;
+}
+//...............................................Function to display Linked Lists as Sets.
+void displaySLL(struct SLLNode *head)
+{
+   struct SLLNode *p; 
+   p = head;
+   while(p != NULL)
+   {
+      cout<<"  "<<p->data;
+      p = p->next;
+   }
+}
+//................................................Function for Set A U B .
+void A_U_B()
+{
+   int i,j;
+   char a[10];   
+   struct SLLNode *p, *q;
+   i = 0;	//Index of Resultant Array
+   p = headA;	//pointer to Set 'A'
+   q = headB;   //pointer to Set 'B'
+   while(p != NULL && q != NULL)
+   {
+      if(p->data == q->data)
+      {
+         a[i] = p->data;
+         i++;
+            p = p->next;
+            q = q->next; 
+      }
+      else
+      {
+         a[i] = p->data;
+         i++;        
+            p = p->next;            
+      }
+   }
+   if(p == NULL)	//Set 'A' copied completely
+   {
+      while(q != NULL)	//Copy remaining elements of Set 'B'
+      {
+         a[i] = q->data;
+         i++;
+            q = q->next;            
+      }
+   }
+   
+   if(q == NULL)	//Set 'B' copied completely
+   {
+      while(p != NULL)	//Copy remaining elements of Set 'A'
+      {
+         a[i] = p->data;
+         i++;
+            p = p->next;            
+      }
+   }
+   cout<<"\n\n\t Set A U B: ";
+   for(j=0; j < i; j++)
+      cout<<" "<<a[j];    
+}
+//................................................Function for Set A ^ B .
+void A_int_B()
+{
+   int i,j;
+   char a[10];   
+   struct SLLNode *p, *q;
+   i = 0;	//Index of Resultant Array
+   p = headA;	//pointer to Set 'A'   
+   while(p != NULL)
+   {
+      q = headB;   //pointer to Set 'B'
+      while(q != NULL)
+      {
+         if(p->data == q->data)
+         {
+            a[i] = p->data;
+            i++;                       
+         }
+         q = q->next;
+      }
+      p = p->next;      
+   }
+   cout<<"\n\n\t Set A ^ B: ";
+   for(j=0; j < i; j++)
+      cout<<" "<<a[j];   
+}
+//................................................Function for Set A - B .
+void A_Min_B()
+{
+   int i,j,flag;
+   char a[10];   
+   struct SLLNode *p, *q;
+   
+   i = 0;	//Index of Resultant Array
+   p = headA;	//pointer to Set 'A'   
+   while(p != NULL)
+   {
+      flag = 0;
+      q = headB;   //pointer to Set 'B'
+      while(q != NULL)
+      {
+         if(p->data == q->data)
+         {
+            flag = 1;                     
+         }
+         q = q->next;
+      }
+      if(flag == 0)
+      {
+         a[i] = p->data;
+            i++;  
+      }
+      p = p->next;      
+   }
+   
+   cout<<"\n\n\t Set A - B: ";
+   for(j=0; j < i; j++)
+      cout<<" "<<a[j];
+}
+//................................................Function for Set B - A.
+void B_Min_A()
+{
+   int i,j,flag;
+   char a[10];   
+   struct SLLNode *p, *q;
+   
+   i = 0;	//Index of Resultant Array
+   q = headB;	//pointer to Set 'B'   
+   while(q != NULL)
+   {
+      flag = 0;
+      p = headA;   //pointer to Set 'A'
+      while(p != NULL)
+      {
+         if(q->data == p->data)
+         {
+            flag = 1;                     
+         }
+         p = p->next;
+      }
+      if(flag == 0)
+      {
+         a[i] = q->data;
+            i++;  
+      }
+      q = q->next;      
+   }
+   cout<<"\n\n\t Set B - A: ";
+   for(j=0; j < i; j++)
+      cout<<" "<<a[j];
+}
+//................................................Function for Set U - (A U B).
+void U_Min_A_U_B()
+{
+    int i,j,flag;
+   char a[10];   
+   struct SLLNode *p, *q, *r;
+   
+   i = 0;	//Index of Resultant Array
+   p = headU;	//pointer to Set 'U'   
+   
+   while(p != NULL)
+   {
+      flag = 0;
+      q = headA;   //pointer to Set 'A'
+      r = headB;   //pointer to Set 'B'      
+      while(q != NULL)
+      {
+         if(p->data == q->data)
+         {
+            flag = 1;                     
+         }
+         q = q->next;
+      }
+      while(r != NULL)
+      {
+         if(p->data == r->data)
+         {
+            flag = 1;                     
+         }
+         r = r->next;
+      }
+      if(flag == 0)
+      {
+         a[i] = p->data;
+            i++;  
+      }
+      p = p->next;      
+   }
+   cout<<"\n\n\t Set U - (A U B): ";
+   for(j=0; j < i; j++)
+      cout<<" "<<a[j];
+}
+
+//PRACTICAL 9:
+//PROGRAM:
+
+#include<iostream>
+#include<string.h>
+#define max 50
+using namespace std;
+class STACK
+{
+	private:
+		char a[max];
+		int top;
+	
+	public:
+		STACK()
+		{
+			top=-1;	
+		}	
+		
+		void push(char);
+		void reverse();	
+		void convert(char[]);
+		void palindrome();
+};
+void STACK::push(char c)
+{
+	top++;
+	a[top] = c;
+	a[top+1]='\0';	
+	cout<<endl<<c<<" is pushed on stack ...";
+}
+void STACK::reverse()
+{
+	char str[max];
+	cout<<"\n\nReverse string is : ";	
+	for(int i=top,j=0; i>=0; i--,j++)
+	{
+		cout<<a[i];
+		str[j]=a[i];
+	}
+	cout<<endl;
+}
+void STACK::convert(char str[])
+{
+	int j,k,len = strlen(str);
+	for(j=0, k=0; j<len; j++)
+	{
+		if( ( (int)str[j] >= 97 && (int)str[j] <=122 ) || ( (int)str[j] >= 65 && (int)str[j] <=90 ))
+		{
+			if( (int)str[j] <=90 )
+			{
+				str[k] = (char)( (int)str[j] + 32 );
+			}else
+			{
+				str[k] = str[j];				
+			}
+			k++;			
+		}
+	}
+	str[k]='\0';
+	cout<<endl<<"Converted String : "<<str<<"\n";
+}
+void STACK::palindrome()
+{	
+	char str[max];
+	int i,j;		
+	for(i=top,j=0; i>=0; i--,j++)
+	{
+		str[j]=a[i];
+	}
+	str[j]='\0';
+	if(strcmp(str,a) == 0)
+		cout<<"\n\nString is palindrome...";
+	else
+		cout<<"\n\nString is not palindrome...";
+}
+int main()
+{
+	STACK stack;
+	char str[max];
+	int i=0;
+	cout<<"\nEnter string to be reversed and check is it palindrome or not : \n\n";
+	cin.getline(str , 50);
+	stack.convert(str);
+	while(str[i] != '\0')
+	{
+		stack.push(str[i]);
+		i++;
+	}
+	stack.palindrome();
+	stack.reverse();
+}
+
+//PRACTICAL 10:
+//PROGRAM:
+
+#include <iostream>
+using namespace std;
+#define size 10
+
+class stackexp
+{
+    int top;
+    char stk[size];
+public:
+    stackexp()
+    {
+     top=-1;
+    }
+    void push(char);
+    char pop();
+    int isfull();
+    int isempty();
+};
+
+void stackexp::push(char x)
+{
+    top=top+1;
+    stk[top]=x;
+}
+
+char stackexp::pop()
+{
+    char s;
+    s=stk[top];
+    top=top-1;
+    return s;
+}
+
+int stackexp::isfull()
+{
+    if(top==size)
+        return 1;
+    else
+        return 0;
+}
+
+int stackexp::isempty()
+{
+    if(top==-1)
+        return 1;
+    else
+        return 0;
+}
+
+int main()
+{
+    stackexp s1;
+    char exp[20],ch;
+    int i=0;
+    cout << "\n\t!! Parenthesis Checker..!!!!" << endl; // prints !!!Hello World!!!
+    cout<<"\nEnter the expression to check whether it is in well form or not :  ";
+    cin>>exp;
+    if((exp[0]==')')||(exp[0]==']')||(exp[0]=='}'))
+    {
+        cout<<"\n Invalid Expression.....\n";
+        return 0;
+    }
+    else
+    {
+        while(exp[i]!='\0')
+        {
+            ch=exp[i];
+            switch(ch)
+            {
+            case '(':s1.push(ch);break;
+            case '[':s1.push(ch);break;
+            case '{':s1.push(ch);break;
+            case ')':s1.pop();break;
+            case ']':s1.pop();break;
+            case '}':s1.pop();break;
+            }
+            i=i+1;
+        }
+    }
+    if(s1.isempty())
+    {
+        cout<<"\nExpression is well parenthesised...\n";
+    }
+    else
+    {
+        cout<<"\nSorry !!! Invalid Expression or not in well parenthesized....\n";
+    }
+    return 0;
+}
+
+//PRACTIAL 11:
+PROGRAM:
+
+
+#include <iostream>
+#define MAX 10
+using namespace std;
+struct queue
+{       int data[MAX];
+	int front,rear;
+};
+class Queue
+{    struct queue q;
+   public:
+      Queue(){q.front=q.rear=-1;}
+      int isempty();
+      int isfull();
+      void enqueue(int);
+      int delqueue();
+      void display();
+};
+int Queue::isempty()
+{
+	return(q.front==q.rear)?1:0;
+}
+int Queue::isfull()
+{    return(q.rear==MAX-1)?1:0;}
+void Queue::enqueue(int x)
+{q.data[++q.rear]=x;}
+int Queue::delqueue()
+{return q.data[++q.front];}
+void Queue::display()
+{   int i;
+    cout<<"\n";
+    for(i=q.front+1;i<=q.rear;i++)
+	     cout<<q.data[i]<<" ";
+}
+int main()
+{      Queue obj;
+	int ch,x;
+	do{    cout<<"\n 1.Insert Job\n 2.Delete Job\n 3.Display\n 4.Exit\n Enter your choice : ";
+	       cin>>ch;
+	switch(ch)
+	{  case 1: if (!obj.isfull())
+		   {   cout<<"\n Enter data : \n";
+			cin>>x;
+			obj.enqueue(x);
+			cout<<endl;
+		   }
+	          else
+		      cout<< "Queue is overflow!!!\n\n";
+	           break;
+	   case 2: if(!obj.isempty())
+			    cout<<"\n Deleted Element = "<<obj.delqueue()<<endl;
+		    else
+			{   cout<<"\n Queue is underflow!!!\n\n";  }
+		    cout<<"\nRemaining Jobs : \n";
+		    obj.display();
+	           break;
+	  case 3: if (!obj.isempty())
+	        {  cout<<"\n Queue contains : \n";
+		       obj.display();
+	        }
+	        else
+		         cout<<"\n Queue is empty!!!\n\n";
+	       break;
+	  case 4: cout<<"\n Exiting Program.....";
+        }
+      }while(ch!=4);
+return 0;
+}
+
+//PRACTICAL 12:
+//PROGRAM:
+
+#include<iostream>
+#include<stdio.h>
+#define MAX 10
+using namespace std;
+
+struct que
+{
+    int arr[MAX];
+    int front,rear;
+};
+
+void init(struct que *q)
+{
+    q->front=-1;
+    q->rear=-1;
+}
+
+void print(struct que q)
+{
+    int i;
+    i=q.front;
+    while(i!=q.rear)
+    {
+        cout<<"\t"<<q.arr[i];
+        i=(i+1)%MAX;
+    }
+    cout<<"\t"<<q.arr[q.rear];
+}
+
+int isempty(struct que q)
+{
+    return q.rear==-1?1:0;
+}
+
+int isfull(struct que q)
+{
+    return (q.rear+1)%MAX==q.front?1:0;
+}
+
+void addf(struct que *q,int data)
+{
+    if(isempty(*q))
+    {
+        q->front=q->rear=0;
+        q->arr[q->front]=data;
+    }
+    else
+    {
+        q->front=(q->front-1+MAX)%MAX;
+        q->arr[q->front]=data;
+    }
+}
+
+void addr(struct que *q,int data)
+{
+    if(isempty(*q))
+    {
+        q->front=q->rear=0;
+        q->arr[q->rear]=data;
+    }
+    else
+    {
+        q->rear=(q->rear+1)%MAX;
+        q->arr[q->rear]=data;
+    }
+}
+
+int delf(struct que *q)
+{
+    int data1;
+    data1=q->arr[q->front];
+    if(q->front==q->rear)
+        init(q);
+    else
+        q->front=(q->front+1)%MAX;
+    return data1;
+}
+
+int delr(struct que *q)
+{
+    int data1;
+    data1=q->arr[q->rear];
+    if(q->front==q->rear)
+        init(q);
+    else
+        q->rear=(q->rear-1+MAX)%MAX;
+    return data1;
+}
+
+int main()
+{
+    struct que q;
+    int data,ch;
+    init(&q);
+    while(ch!=6)
+    {
+        cout<<"\t\n1.Insert front,"
+                "\t\n2.Insert rear,"
+                "\t\n3.Delete front,"
+                "\t\n4.Delete rear,"
+                "\t\n5.Print,"
+                "\t\n6.Exit";
+         cout<<"\n\tEnter your choice";
+        cin>>ch;
+        switch(ch)
+        {
+           case 1:
+              cout<<"\nEnter data to insert front:";
+              cin>>data;
+              addf(&q,data);
+              break;
+
+           case 2:
+               cout<<"\nEnter the data to insert rear:";
+               cin>>data;
+               addr(&q,data);
+               break;
+
+           case 3:
+               if(isempty(q))
+                   cout<<"\nDequeue is empty";
+               else
+               {
+                   data=delf(&q);
+                   cout<<"\nDeleted data is"<<data;
+               }
+               break;
+
+           case 4:
+               if(isempty(q))
+                   cout<<"\nDequeue is empty";
+               else
+               {
+                   data=delr(&q);
+                   cout<<"\nDeleted data is"<<data;
+               }
+               break;
+
+           case 5:
+                if(isempty(q))
+                    cout<<"\nDequeue is empty";
+                else
+                {
+                    cout<<"\nDequeue elements are:";
+                    print(q);
+                }
+                break;
+        }
+    }
+    return 0;
+}
+
+
+//PRACTICAL 12:
+//PROGRAM:
+
+#include<iostream>
+#include<windows.h>
+using namespace std;
+const int MAX=5;
+class PizzaParlour
+{
+	int front,rear;
+	int orders[MAX];
+	public:
+		PizzaParlour()
+		{
+			front=rear=-1;
+		}
+		bool addOrder(int data);
+		void serveOrder();
+		void display();
+};
+bool PizzaParlour::addOrder(int id){
+ 	if(rear==-1)
+ 	{
+ 		front=rear=0;
+ 		orders[rear]=id;
+ 		return true;
+	 }
+	 else
+	 {
+	 	int pos=(rear+1)%MAX;
+	 	if(pos==front)
+	 	{
+	 		cout<<"\nCafe is Full.Please wait.\n";
+	 		return false;
+		 }
+		 else
+		 {
+		 	rear=pos;
+		 	orders[rear]=id;
+		 	return true;
+		 }
+	 }
+ }
+ 
+ void PizzaParlour::serveOrder()
+ {
+ 	if(front==-1)
+ 	{
+ 		cout<<"\n No Orders in Cafe.[Cafe is Empty)\n";
+ 		return;
+	 }
+	 else
+	 {
+	 	cout<<"\n Order No. "<<orders[front]<<" is processed.\n";
+	 	if(front==rear) //only one order
+	 	{
+	 		front=rear=-1;
+		 }
+		 else
+		 {
+		 	front=(front+1)%MAX;
+		 }
+	 }
+ }
+ 
+ void PizzaParlour::display()
+ {
+ 	int i=0;
+ 	if(front==-1)
+ 	{
+ 		cout<<"\nCafe is Empty.No orders.\n";
+ 		return;
+	 }
+	 else
+	 {
+	 	cout<<"Order Id's: \n";
+	 	for(i=front;i!=rear;i=((i+1)%MAX))
+	 	{
+	 		cout<<orders[i]<<"  ";
+		 }
+		 cout<<orders[rear];
+	 }
+ }
+ void intro()
+ {	char name[50]={"\n Vaibhav Cafe \n"};
+ 		for(int i=0;name[i]!='\0';i++)
+	{
+		Sleep(50);
+		cout<<name[i];
+		
+	}
+ }
+ int main()
+ {
+ 	int ch,id=0;
+ 
+	PizzaParlour q;
+
+	do
+	{
+		cout<<"\n-----------------";
+	intro();
+		cout<<"-----------------";
+		cout<<"\n****Menu*****\n";
+		cout<<"1. Accept order\n";
+		cout<<"2. Serve order\n";
+		cout<<"3. Display orders\n";
+		cout<<"4. Exit";
+
+		cout<<"\nChoice: ";
+		cin>>ch;
+
+		switch(ch)
+		{
+		case 1: 
+				id++;
+				if(q.addOrder(id))
+				{
+					cout<<"Thank you for order.Order id is : "<<id;
+				}
+				else
+				{
+					id--;
+				}
+				break;
+
+		case 2: q.serveOrder();
+				break;
+
+		case 3: q.display();
+				break;
+		}
+	}while(ch!=4);
+	cout<<"\nThank You.Keep Visiting.";
+
+ }
